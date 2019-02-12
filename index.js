@@ -3,7 +3,7 @@
 const program = require('commander')
 const figlet = require('figlet')
 const { getCLIVersion } = require('./helpers/get-cli-version')
-
+const { Spinner } = require('./helpers/spinner')
 initCli()
 
 async function initCli () {
@@ -13,16 +13,21 @@ async function initCli () {
     .version(version, '-v, --version')
 
   program
-    .option('-f, --force', 'skip confirmation and overwrite existing zipfile')
-    .option('-s, --skipBuild', 'specifies whether to trigger webpack build or not')
-    .option('-o, --outputPath <path>', 'the path where the zipfile will be written, defaults to current working directory the user is running the cli from')
+    .option('-z, --zipCode', 'zipcode')
+    .option('-s, --subtotal', 'subtotal')
     .description('creates zipfile for a plugin')
     .action((path = './', options) => {
       console.log('building plugin in %s', path)
+      const spinner = new Spinner('doing stuff')
+      spinner.start()
+      setTimeout(() => {
+        spinner.update('doing more stuff')
+      }, 1000)
+      setTimeout(() => spinner.end(), 2000)
     })
 
-  console.log(figlet.textSync('Aliased Imports', {
-    // font: 'Dancing Font',
+  console.log(figlet.textSync('Daft Cove', {
+    font: 'Dancing Font',
     horizontalLayout: 'full',
     verticalLayout: 'full'
   }))
