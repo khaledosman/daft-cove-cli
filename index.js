@@ -21,11 +21,17 @@ async function initCli () {
     .option('-s, --subTotal <subTotal>', 'The subtotal of the order')
     .description(`validates the total sum of an order based on a zipcode's tax rate`)
     .action(async (options) => {
-      let { zipCode, subTotal } = program
-      subTotal = Number(subTotal)
+      const { zipCode: passedZipCode, subTotal: passedSubTotal } = program
+      const subTotal = Number(passedSubTotal)
+      const zipCode = Number(passedZipCode)
 
       if (isNaN(subTotal)) {
-        console.error(chalk.red(`subtotal must be a valid number, entered ${subTotal}`))
+        console.error(chalk.red(`subtotal must be a valid number, entered ${passedSubTotal}`))
+        process.exit(1)
+      }
+
+      if (isNaN(zipCode)) {
+        console.error(chalk.red(`zip code must be a valid number, entered ${passedZipCode}`))
         process.exit(1)
       }
 
