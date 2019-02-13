@@ -1,0 +1,9 @@
+{
+  "API_USER": "user",
+  "API_PASSWORD": "token",
+  "API_URL": "https://deft-cove-227620.appspot.com",
+  "validZipCodes": [
+  "20500", "20748", "34248", "37312", "46523",
+  "46523", "75093", "75876", "84111", "95361"
+  ]
+}
