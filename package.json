@@ -1,5 +1,5 @@
 {
-  "name": "aliased-imports",
+  "name": "daft-cove-cli",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,17 @@
   },
   "author": "Khaled Osman",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "post-commit": "npx standard --fix"
+    }
+  },
   "dependencies": {
     "axios": "^0.18.0",
-    "chalk": "^2.4.1",
+    "chalk": "^2.4.2",
     "clui": "^0.3.6",
     "commander": "^2.19.0",
     "figlet": "^1.2.1",
-    "inquirer": "^6.2.0",
-    "inquirer-fuzzy-path": "^1.0.0",
     "node-progress": "^0.1.0"
   },
   "devDependencies": {

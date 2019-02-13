@@ -1,5 +1,5 @@
 const fs = require('fs')
-
+const { promisify } = require('util')
 async function checkFileExists (file) {
   // Check if the file exists in the current directory.
   return new Promise((resolve, reject) => {
