@@ -21,7 +21,7 @@ async function initCli () {
     .option('-s, --subTotal <subTotal>', 'The subtotal of the order')
     .description(`validates the total sum of an order based on a zipcode's tax rate`)
     .action(async (options) => {
-      const { zipCode: passedZipCode, subTotal: passedSubTotal } = program
+      const { zipCode: passedZipCode, subTotal: passedSubTotal } = options
       const subTotal = Number(passedSubTotal)
       const zipCode = Number(passedZipCode)
 
@@ -35,7 +35,7 @@ async function initCli () {
         process.exit(1)
       }
 
-      if (!validZipCodes.includes(zipCode)) {
+      if (!validZipCodes.includes(passedZipCode)) {
         console.warn(chalk.yellow(`WARNING: zipcode is not valid, valid zip codes are ${validZipCodes}`))
         // process.exit(1)
       }
