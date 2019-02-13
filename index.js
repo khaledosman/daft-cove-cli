@@ -24,18 +24,19 @@ async function initCli () {
       let { zipCode, subTotal } = program
       subTotal = Number(subTotal)
 
-      const spinner = new Spinner('getting tax rate for given zip code')
+      const spinner = new Spinner(chalk.green('getting tax rate for given zip code'))
       spinner.start()
       try {
         let { tax_rate: taxRate } = await getTaxForZipCode(zipCode)
         // taxRate = Number.parseFloat(taxRate)
         spinner.end()
-        const spinner2 = new Spinner('making order')
+        const spinner2 = new Spinner(chalk.cyan('making order'))
         const taxTotal = Number(taxRate) / 100 * subTotal
         const total = subTotal + taxTotal
-        console.log({ taxTotal, total, taxRate, subTotal })
-        const order = await makeOrder({ zipCode, subTotal, taxRate, taxTotal, total })
-        console.log(order)
+        // console.log({ taxTotal, total, taxRate, subTotal })
+        const response = await makeOrder({ zipCode, subTotal: subTotal.toFixed(3), taxRate, taxTotal: taxTotal.toFixed(2), total })
+        // console.log(response)
+        console.log(chalk.bold.cyan(response.status_message))
         spinner.end()
         spinner2.end()
       } catch (err) {

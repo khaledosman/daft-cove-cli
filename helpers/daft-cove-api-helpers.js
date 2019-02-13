@@ -15,7 +15,8 @@ function getTaxForZipCode (zipCode) {
 function makeOrder ({ zipCode, taxRate, subTotal, taxTotal, total }) {
   return axios.post(`${API_URL}/api/order?zipcode=${zipCode}&tax_rate=${taxRate}&sub_total=${subTotal}&tax_total=${taxTotal}&total=${total}`, { }, {
     headers: {
-      Authorization: `Basic ${API_TOKEN}`
+      Authorization: `Basic ${API_TOKEN}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
   })
     .then(res => res.data)
