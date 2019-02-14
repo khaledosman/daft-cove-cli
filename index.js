@@ -20,6 +20,19 @@ async function initCli () {
     .option('-z, --zipCode <zipCode>', 'The zip code of the country, used to get the taxrate')
     .option('-s, --subTotal <subTotal>', 'The subtotal of the order')
     .description(`validates the total sum of an order based on a zipcode's tax rate`)
+
+  console.log(figlet.textSync('Daft Cove', {
+    font: 'Dancing Font',
+    horizontalLayout: 'full',
+    verticalLayout: 'full'
+  }))
+
+  // if no commands/arguments specified, show the help
+  if (!process.argv.slice(2).length) {
+    program.help()
+  }
+
+  program
     .action(async (options) => {
       const { zipCode: passedZipCode, subTotal: passedSubTotal } = options
       const subTotal = Number(passedSubTotal)
@@ -67,15 +80,5 @@ async function initCli () {
       }
     })
 
-  console.log(figlet.textSync('Daft Cove', {
-    font: 'Dancing Font',
-    horizontalLayout: 'full',
-    verticalLayout: 'full'
-  }))
-
   program.parse(process.argv)
-  // if no commands/arguments specified, show the help
-  if (!process.argv.slice(2).length) {
-    program.help()
-  }
 }
