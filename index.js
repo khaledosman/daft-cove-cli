@@ -25,6 +25,11 @@ async function initCli () {
       const subTotal = Number(passedSubTotal)
       const zipCode = Number(passedZipCode)
 
+      if (typeof passedZipCode === 'undefined' || typeof subTotal === 'undefined') {
+        console.log(chalk.red(`please enter both the zip code and the subtotal`))
+        process.exit(1)
+      }
+
       if (isNaN(subTotal)) {
         console.error(chalk.red(`subtotal must be a valid number, entered ${passedSubTotal}`))
         process.exit(1)
